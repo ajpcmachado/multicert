@@ -1,0 +1,6 @@
+pt\multicert\client\api\dal\repo\ClientRepo.class
+pt\multicert\client\api\mapper\ClientMapper.class
+pt\multicert\client\api\dal\entity\Client.class
+pt\multicert\client\api\rest\impl\ClientRestServiceImpl.class
+pt\multicert\client\api\mapper\ClientMapperImpl.class
+pt\multicert\client\api\dal\repo\impl\ClientRepoImpl.class

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="org.postgresql.Driver" />
+		<property name="url"
+			value="jdbc:postgresql://raja.db.elephantsql.com:5432/mnvafafa" />
+		<property name="username" value="mnvafafa" />
+		<property name="password" value="LhWqTBjykt4f2X0v83YCOEjXFYRZtaou" />
+	</bean>
+
+	<bean id="transactionManager"
+      class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+
+	<!-- Hibernate 5 Annotation SessionFactory Bean definition -->    
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean"
+		p:packagesToScan="pt.multicert.client.api.dal.entity">
+		<property name="dataSource" ref="dataSource" />		 
+		<!-- <property name="packagesToScan" value="pt.multicert.client.api.dal" /> -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+
+<!-- Instruct Spring to perform automatic transaction management on annotated 
+		classes. The SimpleJdbcTarefas implementation declares @Transactional annotations. 
+		"proxy-target-class" is set because of SimpleJdbctarefas @ManagedOperation 
+		usage. -->
+	<tx:annotation-driven />
+	
+	<bean id="clientRepo" class="pt.multicert.client.api.dal.repo.impl.ClientRepoImpl" />
+</beans>

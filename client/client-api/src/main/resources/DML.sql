@@ -1,0 +1,9 @@
+CREATE TABLE CLIENT (
+	ID  serial NOT NULL,
+	NOME text NOT NULL,
+	NIF text NOT NULL,
+	MORADA text NOT NULL,
+	TELEFONE text NOT NULL,
+	PRIMARY KEY (Id),
+	CONSTRAINT RegisteredUser_unique_username UNIQUE (NIF)
+);

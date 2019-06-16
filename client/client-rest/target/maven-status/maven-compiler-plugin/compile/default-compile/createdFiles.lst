@@ -1,0 +1,3 @@
+pt\multicert\client\rest\bean\ClientList.class
+pt\multicert\client\rest\ClientRestService.class
+pt\multicert\client\rest\bean\Client.class
